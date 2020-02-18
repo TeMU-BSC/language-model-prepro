@@ -1,0 +1,14 @@
+5-(4H)-oxazolona
+La 5-(4H)-oxazolona es un compuesto químico de la familia del oxazol.
+Este compuesto químico de fórmula molecular C3H3NO2, tiene varios sitios reactivos que permiten la funcionalización del mismo de diversas maneras, aunque la mayoría de las reacciones suponen la reacción con el protón del C-4 (arrancándolo con una base o produciendo una reacción de sustitución nucleófila aromática), o la reacción y posteriór apertura del anillo.
+Síntesis y reactividad general
+Desde el descubrimiento de Erlenmeyer de la síntesis de azlactonas (mediante la síntesis de aminoácidos de Erlenmeyer-Plöchl), se han descubierto otras nuevas síntesis de 5-(4H)-oxazolonas (en adelante no se va a especificar ni la posición del doble enlace ni de la cetona, de tal manera que nombraremos a este compuesto químico como oxazolona, aunque nos refiramos solo a este isómero).
+La naturaleza ácida del protón de la posición 4 del anillo de oxazolona (el C-4), que tiene un pKa ~ 9, hace que la formación del enolato de oxazol sea fácil de formar (compuesto [B] de la figura 1), puediendo reaccionar con bases para dar estos enolatos.
+Además, también reacciona con nucleófilos y electrófilos, en función de si el reactivo es de un tipo u otro.
+[2]​
+
+Si reacciona con una base, debido al equilibrio químico (tautomería ceto-enólica), se forma el enolato (compuesto [B]) y la forma cetónica (compuesto [A]), pudiendo reaccionar con un amplio rango de electrófilos.
+Si reacciona con un nucleófilo, éste ataca al átomo de carbono 5 (C-5) carbonílico, abriendo el anillo de la oxazolona, produciendo el compuesto [C] de la figura.
+Si reacciona con un ácido de Lewis (A.L.
+), se pueden formar 2 compuestos de reactividad diferente: un 1,3-dipolarófilo (compuesto [D]), que podrá reaccionar en una cicloadición 1,3-dipolar; o una cetena (compuesto [E]), que podrá dar una cicloadición [2+2].
+== Referencias ==

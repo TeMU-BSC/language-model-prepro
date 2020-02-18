@@ -1,0 +1,42 @@
+Aaptamina
+La aaptamina es un alcaloide naftiridínico aislado de varias esponjas marinas del género Aaptos: A. aaptos,[2]​[3]​ A. suberitoides,[4]​ así como esponjas pertenencientes a otros géneros: Suberites sp.,[5]​ Luffariella,[6]​ Hymenacidon[7]​
+y Xestospongia.
+[8]​
+
+Historia
+Las naftiridinas ya habían sido estudiadas por el grupo de Efros poco antes de ser descubiertas en la naturaleza[9]​
+La aaptamina es un alcaloide prototípico de varios alcaloides naftiridínicos de esponjas marinas.
+Su aislamiento e identificación fueron realizados por Nakamura y colaboradores, colectada de las costas de Okinawa.
+5 años más tarde se aislaron otros derivados polidesmetilados de las aaptaminas.
+Propiedades físicas
+La aaptamina es un sólido cristalino verde (metanol/acetona).
+Es soluble en metanol y cloroformo.
+UV: [neutral]λmax215 (ε13700) ;236 (ε14700) ;255 (ε17900) ;309 (ε3640) ;350 (ε3750) ;380 (ε5000) ;394 (ε4570) ( H2O) [neutral]λmax220 (ε8900) ;239 (ε11750) ;257 (ε13200) ;274 (ε9700) ;312 (ε3160) ;354 (ε3300) ;384 (ε5620) ( MeOH)
+
+Biosíntesis
+De acuerdo a la hipótesis de Claridge, el esqueleto de la aaptamina se puede derivar de la S-3(3,4-dihidroxifenil)alanina(L-DOPA) y un equivalente biosintético del aldehído de la β-alanina, con los cuales se lleva a cabo la reacción de Mannich (en una reacción tipo Pictet-Spengler) para formar el equivalente de tetrahidroisoquinolina y con heterociclización sobre el anillo de benceno de la quinolina.
+Posteriormente se lleva a cabo una descarboxilación y deshidrogenación para producir la 8,9-bisdesmetilaaptamina.
+Este compuesto, por metilaciones posteriores produce la aaptamina.
+[10]​
+
+Síntesis
+Sakamoto y colaboradores sintetizaron la aaptaminaa partir de 6-bromo-3,4-dimetoxi-2-nitrobenzaldehído del siguiente esquema sintético:[11]​
+
+a)Formación del grupo ciano a partir del grupo aldehído.
+b)Acoplamiento con acetiluro de trimetilsililo por acción de catalizadores de paladio.
+c)Eliminación del grupo trimetilsililo por acción de metóxido de sodio con posterior formación del acetal dimetílico.
+d)Oxigenación del grupo cianuro.
+e)Heterociclización para formar la 1-quinolona.
+f)Reemplazo del grupo ceto por un grupo clorovinilo.
+g)Segundo acoplamiento con acetiluro de trimetilsililo por acción de catalizadores de paladio.
+h)Eliminación del grupo trimetilsililo por acción de metóxido de sodio con posterior formación del acetal dimetílico.
+i)Reducción del grupo nitro.
+j)Formación del segundo heterociclo de la naftiridina con catálisis ácida.
+Actividad biológica
+Es bloqueador de los adrenoreceptores α. Aoki y colaboradores reportaron actividad antineoplásica sobre células humanas de osteosarcoma MG63.
+[12]​
+
+Derivados
+
+
+== Referencias ==

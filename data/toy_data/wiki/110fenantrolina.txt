@@ -1,0 +1,24 @@
+1,10-fenantrolina
+La 1,10-fenantrolina,  o-fenantrolina o simplemente fenantrolina (phen) es un compuesto orgánico heterocíclico.
+Es un sólido de color blanco que es soluble en disolventes orgánicos.
+Se utiliza como un ligando en la química de coordinación, ya que forma complejos fuertes con la mayoría de los iones metálicos.
+[2]​ En términos de sus propiedades de coordinación, phen es similar a la 2,2'-bipiridina (bipy).
+A temperatura ambiente es estable en la forma de monohidrato como un sólido blanco inodoro.
+Es un compuesto tóxico, peligroso para el medio ambiente.
+En combinación con iones de hierro, se usa como un indicador redox; tres moléculas de fenantrolina formaun un complejo metálico con un ion Fe(II) ("ferroso") de color rojo, cuya forma correspondiente oxidada da lugar a un color azul.
+Síntesis
+La fenantrolina se puede preparar mediante dos reacciones de Skraup sucesivas de glicerol con ''o''-fenilendiamina, catalizadas por ácido sulfúrico, y un agente oxidante, tradicionalmente ácido arsénico acuoso o nitrobenceno.
+[3]​ La deshidratación del glicerol da acroleína que se condensa con la amina seguida de una ciclación.
+La ferroína y sus análogos
+El complejo [Fe(phen)3]2+, llamado ferroína, se utiliza para la determinación espectrofotométrica de Fe(II).
+[4]​ Se utiliza como un indicador redox con potencial estándar de viraje de color de 1,06 V.
+La forma reducida ferroso tiene un color rojo intenso y la forma oxidada es de color azul claro.
+[5]​  La ferroína se utiliza como un inhibidor permeable celular para metaloproteasas en biología celular.
+El complejo rosa [Ni(phen)3]2+ se ha resuelto en sus isómros Δ y Λ.
+[6]​  
+El análogo [Ru(phen)3]2+ tiene bioactividad.
+[7]​
+
+Peligrosidad
+La o-fenantrolina es moderadamente neurotóxica, altamente tóxica para los riñones y un potente diurético.
+== Referencias ==
