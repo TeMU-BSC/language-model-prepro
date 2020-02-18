@@ -10,22 +10,15 @@ from sentence_splitter import SentenceSplitter # recommended by jordi
 from langid.langid import LanguageIdentifier, model # fast
 import shutil
 import os
-import warnings
 import subprocess
 from itertools import chain, starmap
 import json
 import csv
 import textract
+import warnings
 
-def warning_on_one_line(message, category, filename, lineno, file=None, line=None):
-    return '%s:%s: %s: %s\n' % (filename, lineno, category.__name__, message)
-warnings.formatwarning = warning_on_one_line
 
-target_lang = 'es'
-identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
-splitter = SentenceSplitter(language=target_lang)
-
-def to_plain_text(input_filepath, output_filepath, data_type='json'):
+def to_plain_text(input_dirpath, output_dirpath, data_type=''):
     '''
     DESCRIPTION: receives datapath with non-plain text files and transforms them
     to plain text (very naïve, any lines with headers, ids, etc will be removed
@@ -46,56 +39,67 @@ def to_plain_text(input_filepath, output_filepath, data_type='json'):
     None
     '''
     
-    # TODO: Infer datatype from file extension    
-    # TODO: input_filepath is filepath or folder path?, output_filepath is filepath or folder_path?
-    
-    if data_type in ['pdf', 'html', 'xml', 'other']:
-        text = textract.process(input_filepath, encoding='utf8')
-        if data_type == 'pdf':
-            # TODO: fix some of wrong end of lines in pdfminer
-            # Replace \n by blankspace when followed by lowercase
-            #text = re.sub(b'\n+[a-z]', ' [a-z]', text) -> NOT WORKING (obviously)
-            pass
-        # TODO: output to NON-Sentence-splitted folder with UTF-8 encoding
-        # write_binary_sentence_splitted(output_filepath, text)'''
-
-    elif data_type == 'json':
-        # Extract info
-        with open(input_filepath, 'r') as f:
-            js = json.load(f)
-        text = list(flatten_json_iterative_solution(js).values())
-        output_filepath = ('.'.join(output_filepath.split('.')[0:-1]) + 
-                           'sentence-splitted.' + output_filepath.split('.')[-1])
-        # Write
-        write_binary_sentence_splitted(output_filepath, text)
+    for root, dirs, files in os.walk(input_dirpath):
+        for filename in files:
+            print(root)
+            # Infer datatype from file extension  
+            if data_type == '':
+                data_type = filename.split('.')[-1]
+                
+            if data_type in ['pdf', 'html', 'xml', 'other']:
+                text = textract.process(filename, encoding='utf8')
+                if data_type == 'pdf':
+                    # TODO: fix some of wrong end of lines in pdfminer
+                    # Replace \n by blankspace when followed by lowercase
+                    #text = re.sub(b'\n+[a-z]', ' [a-z]', text) -> NOT WORKING (obviously)
+                    pass
+                # TODO: output to NON-Sentence-splitted folder with UTF-8 encoding
+                # write_binary_sentence_splitted(output_dirpath, filename, text)'''
         
-    elif data_type == 'tsv':
-        # Extract info
-        text = []
-        with open(input_filepath, "r") as f:
-            reader = csv.reader(f, delimiter="\t")
-            for i, line in enumerate(reader):
-                for entry in line:
-                    text.append(entry)
-        # Write
-        write_binary_sentence_splitted(output_filepath, text)
-                    
-    elif data_type == 'csv':
-        # Extract info
-        text = []
-        with open(input_filepath, "r") as f:
-            reader = csv.reader(f, delimiter=",")
-            for i, line in enumerate(reader):
-                for entry in line:
-                    text.append(entry)
-        # Write
-        write_binary_sentence_splitted(output_filepath, text)
-
-    elif data_type == 'txt': # Convert to UTF-8 (call to system)
-        with open(output_filepath, "w", encoding='utf8') as outfile:
-            subprocess.call(["iconv", "-t utf-8", input_filepath], stdout=outfile)
+            elif data_type == 'json':
+                # Extract info
+                with open(filename, 'r') as f:
+                    js = json.load(f)
+                text = list(flatten_json_iterative_solution(js).values())
+                
+                # Write
+                write_binary_sentence_splitted(root, input_dirpath, 
+                                               output_dirpath, filename, text)
+                
+            elif data_type == 'tsv':
+                # Extract info
+                text = []
+                with open(filename, "r") as f:
+                    reader = csv.reader(f, delimiter="\t")
+                    for i, line in enumerate(reader):
+                        for entry in line:
+                            text.append(entry)
+                            
+                # Write
+                write_binary_sentence_splitted(root, input_dirpath, 
+                                               output_dirpath, filename, text)
+                            
+            elif data_type == 'csv':
+                # Extract info
+                text = []
+                with open(filename, "r") as f:
+                    reader = csv.reader(f, delimiter=",")
+                    for i, line in enumerate(reader):
+                        for entry in line:
+                            text.append(entry)
+                # Write
+                write_binary_sentence_splitted(root, input_dirpath, 
+                                               output_dirpath, filename, text)
+        
+            elif data_type == 'txt': # Convert to UTF-8 (call to system)
+                output_filepath = os.path.join(root.replace(input_dirpath, 
+                                                            output_dirpath),
+                                               filename)
+                with open(output_filepath, "w", encoding='utf8') as outfile:
+                    subprocess.call(["iconv", "-t utf-8", 
+                                     os.path.join(root,filename)], stdout=outfile)
    
-def split_to_sentences(text):
+def split_to_sentences(text, target_lang='es'):
     '''
     DESCRIPTION: Split text into sentences.
 
@@ -109,7 +113,8 @@ def split_to_sentences(text):
     sentences: list of str
         List with sentences of document
 
-    '''    
+    '''  
+    splitter = SentenceSplitter(language=target_lang)
     return splitter.split(text)
 
 
@@ -142,7 +147,7 @@ def concat_files(input_datapath, output_filepath = '.'):
             fout.write('\n')
     warnings.warn('Files order is arbitrary within a datapath')
     
-def handwritten_filters(text, target_lang, thres_digit=0.5, thres_length=10, 
+def handwritten_filters(text, target_lang='es', thres_digit=0.5, thres_length=10, 
                         thres_upper=0.5, thres_conf=0.9):
     '''
     Remove sentences: non-Spanish
@@ -167,10 +172,15 @@ def handwritten_filters(text, target_lang, thres_digit=0.5, thres_length=10,
     '''
     
     to_remove = []
-    
+    identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
+
     for sentence, pos in zip(text, range(len(text))):
         # Ad-hoc filters
         l = len(sentence)
+        if l==0:
+            to_remove.append(pos)
+            continue
+        
         perc_digits = sum(c.isdigit() for c in sentence) / l
         perc_upper = sum(c.isupper() for c in sentence) / l
         if ((l < thres_length) | (perc_digits > thres_digit) | 
@@ -178,7 +188,6 @@ def handwritten_filters(text, target_lang, thres_digit=0.5, thres_length=10,
             # TODO: set proper thresholds
             to_remove.append(pos)
             continue
-        
         # Detect language
         lang, conf = identifier.classify(sentence)
         if (lang != target_lang) | ((lang == target_lang) & (conf < thres_conf)):
@@ -222,7 +231,8 @@ def flatten_json_iterative_solution(dictionary):
         
     return dictionary
 
-def write_binary_sentence_splitted(output_filepath, text):
+def write_binary_sentence_splitted(root, input_dirpath, output_dirpath, 
+                                   filename, text):
     '''
     DESCRIPTION: Write list of sentences to binary file in UTF-8 encoding.
 
@@ -237,8 +247,11 @@ def write_binary_sentence_splitted(output_filepath, text):
     -------
     None
     '''
-    output_filepath = ('.'.join(output_filepath.split('.')[0:-1]) + 
-       'sentence-splitted.' + output_filepath.split('.')[-1])
+    # Create output_filepath according to input and output directory paths and
+    # Filename
+    output_filepath = os.path.join(root.replace(input_dirpath, output_dirpath),
+                                   filename)
+    # Write file
     with open(output_filepath, 'wb') as f:
         for line in text:
             f.write(line.encode('utf8'))
