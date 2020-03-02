@@ -8,6 +8,7 @@ Created on Mon Feb 10 11:43:20 2020
 
 from sentence_splitter import SentenceSplitter # recommended by jordi
 from langid.langid import LanguageIdentifier, model # fast
+import numpy as np  # needed ?
 import shutil
 import os
 import subprocess
@@ -16,6 +17,7 @@ import json
 import csv
 import textract
 import warnings
+from time import time
 
 
 def to_plain_text(input_dirpath, output_dirpath, data_type=''):
@@ -41,7 +43,7 @@ def to_plain_text(input_dirpath, output_dirpath, data_type=''):
     
     for root, dirs, files in os.walk(input_dirpath):
         for filename in files:
-            print(root)
+
             # Infer datatype from file extension  
             if data_type == '':
                 data_type = filename.split('.')[-1]
@@ -139,7 +141,7 @@ def concat_files(input_datapath, output_filepath = '.'):
     '''
     
     listOfFiles = os.listdir(input_datapath)
-    listOfFiles = list(map(lambda x: input_datapath + x, listOfFiles))
+    listOfFiles = list(map(lambda x: os.path.join(input_datapath, x), listOfFiles))
     with open(output_filepath,'w', encoding='utf8') as fout:
         for f in listOfFiles:
             with open(f,'r', encoding='utf8') as fin:
@@ -147,15 +149,15 @@ def concat_files(input_datapath, output_filepath = '.'):
             fout.write('\n')
     warnings.warn('Files order is arbitrary within a datapath')
     
-def handwritten_filters(text, target_lang='es', thres_digit=0.5, thres_length=10, 
-                        thres_upper=0.5, thres_conf=0.9):
+def handwritten_filters(text_splitted, text, thres_length=10, thres_digit=0.5,
+                        thres_alpha=0.3, thres_upper=0.5, thres_bad_sentences=0.3,
+                        target_lang='es',thres_conf=0.95):
     '''
-    Remove sentences: non-Spanish
-                    high a ratio: 
-                        its,  
-                        uppercase,
-                        non-spanish alphabetic characters -> necessary??
-                    low average sentence length
+    Remove documents: non-Spanish
+                      high a ratio: 
+                                digits,  
+                                uppercase,
+                      low average sentence length
 
     Parameters
     ----------
@@ -163,41 +165,71 @@ def handwritten_filters(text, target_lang='es', thres_digit=0.5, thres_length=10
         Every element in the text is a string containing one single sentence.
     target_lang: str
         Language code we want to keep (es, cat, eu, etc)
+    thres_length: int
+        Minimum sentence length to keep it.
+    thres_digit: float
+        Maximum proportion of digits in sentence to keep it
+    thres_upper: float
+        Maximum proportion of uppercase in sentence to keep it
+    thres_conf: float
+        Minimum language confidence to keep it
 
     Returns
     -------
-    text: list
-        List with sentences we will keep
+    _: bool
+        Whether to keep document or not
 
     '''
+         
+    ## Length condition
+    #text_len = list(map(lambda x: len(x) > thres_length, text_splitted))
+    if (np.mean(list(map(lambda x: len(x), text_splitted))) < thres_length):
+        return False
     
-    to_remove = []
+    ## Bad lines condition
+    # Emtpy lines filter
+    text_not_empty = list(filter(lambda x: len(x) > 0, text_splitted))
+    # Digit ratio filter
+    text_not_digit = list(filter(lambda x: (sum(c.isdigit() for c in x) / len(x)) < thres_digit,
+                             text_not_empty))
+    # Not alphanumeric filter
+    text_not_alpha = list(filter(lambda x: (sum(c.isalnum() for c in x) / len(x)) < thres_alpha,
+                             text_not_digit))
+    # Uppercase ratio filter
+    text_not_upper = list(filter(lambda x: (sum(c.isupper() for c in x) / len(x)) < thres_upper,
+                             text_not_alpha))
+    
+    num_bad_sentences = len(text_splitted) - len(text_not_upper)
+    
+    if (num_bad_sentences/len(text_splitted)) > thres_bad_sentences:
+        return False
+        
+    ## Language condition
+    # TODO: check how this library works and whether it is good enough
     identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
+    if ((identifier.classify(text)[0] == target_lang) & (identifier.classify(text)[1]>thres_conf)):
+        return True
+    else:
+        return False
 
-    for sentence, pos in zip(text, range(len(text))):
-        # Ad-hoc filters
-        l = len(sentence)
-        if l==0:
-            to_remove.append(pos)
-            continue
-        
-        perc_digits = sum(c.isdigit() for c in sentence) / l
-        perc_upper = sum(c.isupper() for c in sentence) / l
-        if ((l < thres_length) | (perc_digits > thres_digit) | 
-            (perc_upper > thres_upper)):
-            # TODO: set proper thresholds
-            to_remove.append(pos)
-            continue
-        # Detect language
-        lang, conf = identifier.classify(sentence)
-        if (lang != target_lang) | ((lang == target_lang) & (conf < thres_conf)):
-            to_remove.append(pos)
-            
-    # Remove non-suitable sentences
-    for index in sorted(set(to_remove), reverse=True):
-        del text[index]
-        
-    return text
+
+def deduplicate(in_path):
+    # TODO: write this
+    '''
+    Remove duplicated sentences in file. 
+    Does it in clusters to speed up the code.
+
+    Parameters
+    ----------
+    in_path : str
+        Path to file I want to deduplicate.
+
+    Returns
+    -------
+    None
+
+    '''
+    return 
 
 def flatten_json_iterative_solution(dictionary):
     """Flatten a nested json file
