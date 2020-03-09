@@ -6,14 +6,14 @@ Created on Wed Mar  4 16:44:15 2020
 @author: antonio
 """
 import os
-import textract
+#import textract
 import json
 import csv
 import warnings
 import subprocess
 import re
-from utils.utils import (write_binary_sentence_splitted, copy_dir_structure,
-                   flatten_json_iterative_solution, warning_on_one_line)
+from utils.utils import (write_binary_sentence_splitted, rreplace,
+                         flatten_json_iterative_solution, warning_on_one_line)
 
 warnings.formatwarning = warning_on_one_line
 
@@ -27,7 +27,7 @@ def normalize_files(in_path):
     Parameters
     ----------
     in_path : str
-        input path.
+        input path. Need to be in data folder
         
     Returns
     -------
@@ -35,16 +35,18 @@ def normalize_files(in_path):
         output path.
 
     '''
-    
     ### Define output path
-    if in_path[-1] == '/':
-        out_path = in_path[0:-1] + '_txt' + '/'
+    out_path = rreplace(in_path, '/data/', '/output/', 1)
+
+    if out_path[-1] == '/':
+        out_path = out_path[0:-1] + '_txt' + '/'
     else:
-        out_path = in_path + '_txt'
-        
-    ### Replicate directory structure
-    copy_dir_structure(in_path, out_path)
+        out_path = out_path + '_txt'
     
+    # Create _txt directory
+    if not os.path.exists(out_path):
+        os.makedirs(out_path)
+        
     ### Normalize files
     to_plain_text(in_path, out_path)
     
@@ -80,7 +82,7 @@ def to_plain_text(input_dirpath, output_dirpath, data_type=''):
                 data_type = filename.split('.')[-1]
                 
             if data_type in ['pdf', 'html', 'xml', 'other']:
-                text = textract.process(filename, encoding='utf8')
+                #text = textract.process(filename, encoding='utf8')
                 if data_type == 'pdf':
                     # TODO: fix some of wrong end of lines in pdfminer
                     # Replace \n by blankspace when followed by lowercase

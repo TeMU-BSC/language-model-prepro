@@ -6,7 +6,7 @@ Created on Mon Feb 10 10:57:35 2020
 @author: antonio
 """
 
-from utils.utils import parse_args, warning_on_one_line
+from utils.utils import parse_args, warning_on_one_line, copy_dir_structure
 import warnings
 from normalize_files import normalize_files
 from filter_files import filter_files
@@ -27,6 +27,9 @@ if __name__ == '__main__':
     target_lang = 'es'
     '''
 
+    ### Replicate directory structure
+    copy_dir_structure('../data/', '../output/')
+    
     if is_concat == True:
         # TODO: need to write this
         pass

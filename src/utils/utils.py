@@ -144,3 +144,28 @@ def parse_args():
 
 def warning_on_one_line(message, category, filename, lineno, file=None, line=None):
     return '%s:%s: %s: %s\n' % (filename, lineno, category.__name__, message)
+
+def rreplace(s, old, new, occurrence):
+    '''
+    Replace last occurrences of substring in string.
+    From https://stackoverflow.com/questions/2556108/rreplace-how-to-replace-the-last-occurrence-of-an-expression-in-a-string
+
+    Parameters
+    ----------
+    s : str
+        string where I work on.
+    old : str
+        occurrence I want to remove.
+    new : str
+        occurrence I want to insert.
+    occurrence : int
+        Number of occurrences I want to substitute.
+
+    Returns
+    -------
+    str
+        new string.
+
+    '''
+    li = s.rsplit(old, occurrence)
+    return new.join(li)
