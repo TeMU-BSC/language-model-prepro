@@ -15,9 +15,12 @@ from utils.utils import copy_dir_structure, split_to_sentences, warning_on_one_l
 warnings.formatwarning = warning_on_one_line
 
 
-def filter_files(in_path):
+def filter_files(in_path, is_concat=False):
     '''
-    Copy files that are suitable to a new directory
+    Copy files that are suitable to a new directory. 
+    In case we have already concatenated files as input (like the one 
+    downloaded from OSCAR https://traces1.inria.fr/oscar/es/), keep only the 
+    suitable lines from each file.
     
     Parameters
     ----------
@@ -45,22 +48,38 @@ def filter_files(in_path):
         for filename in files:
 
             # Decide whether it is suitable or not
-            to_keep = is_suitable(root, filename)
+            to_keep, concat_sentences = is_suitable(root, filename, is_concat)
             
             # Save file
-            if not to_keep:
+            if is_concat == True:
+                # Copy only selected lines
+                output_filepath = os.path.join(root.replace(in_path, out_path),
+                                               filename)
+                with open(output_filepath, 'w', encoding = 'utf8') as f:
+                    for concat_sentence in concat_sentences:
+                        f.write(concat_sentence)
                 continue
-            output_filepath = os.path.join(root.replace(in_path, 
-                                                        out_path),
+            
+            if not to_keep:
+                continue # Do not save unsuitable files
+            
+            output_filepath = os.path.join(root.replace(in_path, out_path),
                                            filename)
             copyfile(os.path.join(root, filename), output_filepath)
             
+    if is_concat == True:
+        warnings.warn('langid module is not very reliable at the sentence level, '+
+                      'then, I am ignoring language detection')
+
     return out_path
 
 
-def is_suitable(root, filename):
+def is_suitable(root, filename, is_concat):
     '''
-    Decide whether a file is suitable, or not
+    Decide whether a file is suitable, or not. 
+    In case we have an already concatenated file as input (like the one 
+    downloaded from OSCAR https://traces1.inria.fr/oscar/es/), decide which 
+    lines to keep.
 
     Parameters
     ----------
@@ -68,11 +87,17 @@ def is_suitable(root, filename):
         path to parent filename folder.
     filename : str
         filename.
+    is_concat: bool
+        whether the input file is a concatenated one or not.
 
     Returns
     -------
-    bool
+    to_keep: bool
         Whether the file is suitable to be used in the NLP task or not.
+    list
+        List with the sentences to keep. Only non-empty when the input is an 
+        already concatenated file.
+        
 
     '''   
 
@@ -80,10 +105,25 @@ def is_suitable(root, filename):
     if os.path.getsize(os.path.join(root, filename)) == 0:
         return False
     
+    
+    ###### A. If we have a concatenated file, get lines to keep ######
+    if is_concat == True:       
+        # Read file
+        with open(os.path.join(root, filename),'r', encoding='utf8') as f:
+            text_splitted = f.readlines()
+            
+        # Filter out unsuitable lines
+        text_splitted_ok = heur_filters_concat(text_splitted, thres_length=10, 
+                                               thres_digit=0.5, thres_alpha=0.3,
+                                               thres_upper=0.5, target_lang='es',
+                                               thres_conf=0.65)
+        return True, text_splitted_ok
+    
+    ###### B. Otherwise, decide whether to keep file, or not ######
     # Read file
     with open(os.path.join(root, filename),'r', encoding='utf8') as f:
         text = f.read()
-    
+        
     ## TODO 1. Only natural language: removed header and tag material from 
     # newswire documents 
         # NOT NECESSARY FOR OUR OPUS CORPUS
@@ -101,15 +141,15 @@ def is_suitable(root, filename):
     		# uppercase,
     		# non-Spanish alphabetic characters -> needed? TODO
     	# low average sentence length
-    to_keep = handwritten_filters(text_splitted, text, thres_length=100,
+    to_keep = heur_filters(text_splitted, text, thres_length=100,
                                   thres_digit=0.9, thres_alpha=0.9, 
                                   thres_upper=0.9, thres_bad_sentences=0.9,
                                   target_lang='es',thres_conf=0.5)
     ## TODO: 5. Further remove noise: ML to remove morphosyntactically similar 
         # sentences to 4: remove sentences
-    return to_keep
+    return to_keep,[]
 
-def handwritten_filters(text_splitted, text, thres_length=10, thres_digit=0.5,
+def heur_filters(text_splitted, text, thres_length=10, thres_digit=0.5,
                         thres_alpha=0.3, thres_upper=0.5, thres_bad_sentences=0.3,
                         target_lang='es',thres_conf=0.95):
     '''
@@ -167,7 +207,70 @@ def handwritten_filters(text_splitted, text, thres_length=10, thres_digit=0.5,
     ## Language condition
     # TODO: check how this library works and whether it is good enough
     identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
-    if ((identifier.classify(text)[0] == target_lang) & (identifier.classify(text)[1]>thres_conf)):
+    if ((identifier.classify(text)[0] == target_lang) & 
+        (identifier.classify(text)[1]>thres_conf)):
         return True
     else:
         return False
+    
+    
+def heur_filters_concat(text_splitted, thres_length=10, thres_digit=0.5,
+                    thres_alpha=0.3, thres_upper=0.5,  target_lang='es',
+                    thres_conf=0.65):
+    '''
+    Remove lines: non-Spanish
+              high a ratio: 
+                        digits,  
+                        uppercase,
+              low average sentence length
+
+    Parameters
+    ----------
+    text_splitted : list of strings
+        List of lines in text.
+    thres_length : int, optional
+        Minimum sentence length to keep it.
+    thres_digit : int, optional
+        Maximum proportion of digits in sentence to keep it
+    thres_alpha : float, optional
+        Maximum proportion of non alphanumeric characters in sentence to keep it
+    thres_upper : float, optional
+        Maximum proportion of uppercase in sentence to keep it
+    target_lang : str, optional
+        Language code we want to keep (es, cat, eu, etc).
+    thres_conf : float, optional
+        Minimum language confidence to keep it
+        
+
+    Returns
+    -------
+    text_splitted : list of strings
+        List of lines kept.
+
+    '''
+         
+    to_remove = []
+
+    for sentence, pos in zip(text_splitted, range(len(text_splitted))):
+        # Ad-hoc filters
+        l = len(sentence)
+        perc_digits = sum(c.isdigit() for c in sentence) / l
+        perc_upper = sum(c.isupper() for c in sentence) / l
+        if ((l < thres_length) | (perc_digits > thres_digit) | 
+            (perc_upper > thres_upper)):
+            # TODO: set proper thresholds
+            to_remove.append(pos)
+            continue
+
+        # Detect language (not very reliable at sentence level)
+        '''identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
+        if ((identifier.classify(sentence)[0] != target_lang) | 
+            ((identifier.classify(sentence)[0] == target_lang) & 
+             (identifier.classify(sentence)[1]<thres_conf))):
+            to_remove.append(pos)'''
+
+    # Remove non-suitable sentences
+    for index in sorted(set(to_remove), reverse=True):
+        del text_splitted[index]
+
+    return text_splitted

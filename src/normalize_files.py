@@ -18,7 +18,7 @@ from utils.utils import (write_binary_sentence_splitted, rreplace,
 warnings.formatwarning = warning_on_one_line
 
 
-def normalize_files(in_path):
+def normalize_files(in_path, is_concat=False):
     '''
     Copy all files into a new directory with same folder structure and files
     transformed to plain text and UTF8 encoding. 
@@ -48,11 +48,11 @@ def normalize_files(in_path):
         os.makedirs(out_path)
         
     ### Normalize files
-    to_plain_text(in_path, out_path)
+    to_plain_text(in_path, out_path, is_concat)
     
     return out_path
 
-def to_plain_text(input_dirpath, output_dirpath, data_type=''):
+def to_plain_text(input_dirpath, output_dirpath, data_type='', is_concat=False):
     '''
     DESCRIPTION: receives datapath with non-plain text files and transforms them
     to plain text (very naïve, any lines with headers, ids, etc will be removed
@@ -136,9 +136,10 @@ def to_plain_text(input_dirpath, output_dirpath, data_type=''):
                     subprocess.call(["iconv", "-t utf-8", 
                                      os.path.join(root,filename)], stdout=outfile)
                 # Remove blank lines
-                with open(os.path.join(output_filepath), 'r', encoding='utf8') as f:
-                    text = f.read()
-                text = text.strip('\n')
-                text = re.sub('\n+', '\n', text)    
-                with open(os.path.join(output_filepath), 'w', encoding='utf8') as f:
-                    f.write(text)
+                if is_concat == False:
+                    with open(os.path.join(output_filepath), 'r', encoding='utf8') as f:
+                        text = f.read()
+                    text = text.strip('\n')
+                    text = re.sub('\n+', '\n', text)    
+                    with open(os.path.join(output_filepath), 'w', encoding='utf8') as f:
+                        f.write(text)

@@ -127,6 +127,8 @@ def parse_args():
         path to input files.
     out_path : str
         path to output file.
+    is_concat: bool
+        whether the input file is an already concatenated file
 
     '''
     parser = argparse.ArgumentParser(description='process user given parameters')
@@ -139,16 +141,28 @@ def parse_args():
                         help = "is the dataset concatenated in one file?")    
     args = parser.parse_args()
 
-    return args.in_path, args.out_path, args.is_concat
+    return args.in_path, args.out_path, args.is_concat == 'True'
 
 
 def warning_on_one_line(message, category, filename, lineno, file=None, line=None):
+    '''
+    Force warnings to be displayed on one line in terminal.
+    
+    Usage
+    ------
+    Place this on top of file:
+        import warnings
+        from utils.utils import warning_on_one_line
+        warnings.formatwarning = warning_on_one_line
+
+
+    '''
     return '%s:%s: %s: %s\n' % (filename, lineno, category.__name__, message)
 
 def rreplace(s, old, new, occurrence):
     '''
     Replace last occurrences of substring in string.
-    From https://stackoverflow.com/questions/2556108/rreplace-how-to-replace-the-last-occurrence-of-an-expression-in-a-string
+    From: https://stackoverflow.com/questions/2556108/rreplace-how-to-replace-the-last-occurrence-of-an-expression-in-a-string
 
     Parameters
     ----------

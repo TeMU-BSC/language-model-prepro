@@ -18,7 +18,6 @@ from time import time
 warnings.formatwarning = warning_on_one_line
 
 
-
 if __name__ == '__main__':
     in_path, out_path, is_concat = parse_args()
     
@@ -30,25 +29,24 @@ if __name__ == '__main__':
     ### Replicate directory structure
     copy_dir_structure('../data/', '../output/')
     
-    if is_concat == True:
-        # TODO: need to write this
-        pass
-    else:
-        ############# 0. ALL files to plain text, UTF-8 encoding #############
-        print('\n\nTransforming files to plain UTF8 text...\n\n')
-        out_path_txt = normalize_files(in_path)
-
-        ############# 1. FILTERING #############
-        print('\n\nFiltering out unsuitable documents...\n\n')
-        in_path_filters = out_path_txt
-        out_path_filters = filter_files(in_path_filters)
+    ############# 0. ALL files to plain text, UTF-8 encoding #############
+    print('\n\nTransforming files to plain UTF8 text...\n\n')
+    out_path_txt = normalize_files(in_path, is_concat)
         
-                
-        ############ Concat all files and remove duplicated sentences ############
-        print('\n\nConcatenating all files...\n\n')
-        input_path_concat = out_path_filters + '/'
-        concat_files(input_path_concat, out_path)
+    # TODO: need to write this
+    ############# 1. FILTERING #############
+    print('\n\nFiltering out unsuitable SENTENCES if the file is already a ' + 
+          'concatenated one, or DOCUMENTS if we have many files which we will '+
+          'concatenate at the end...\n\n')
+    in_path_filters = out_path_txt
+    out_path_filters = filter_files(in_path_filters, is_concat)
+    
+            
+    ############ Concat all files and remove duplicated sentences ############
+    print('\n\nConcatenating all files...\n\n')
+    input_path_concat = out_path_filters + '/'
+    concat_files(input_path_concat, out_path, is_concat)
         
-        ## TODO: Remove duplicated sentences ############
-        print('\n\nRemoving duplicated sentences...\n\n')
-        deduplicate(out_path)
+    ## TODO: Remove duplicated sentences ############
+    print('\n\nRemoving duplicated sentences...\n\n')
+    deduplicate(out_path)
