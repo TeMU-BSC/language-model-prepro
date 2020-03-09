@@ -1,0 +1,22 @@
+2-oxazolidona
+La 2-oxazolidona es un compuesto orgánico heterocíclico que contiene nitrógeno y oxígeno en un anillo de 5 miembros.
+Oxazolidinonas
+Auxiliares de Evans
+Las oxazolidinonas son una clase de compuestos que contienen anillos de 2-oxazolidona en su estructura.
+En química, son útiles como auxiliares de Evans, que son usados para síntesis quiral.
+Generalmente, el sustrato cloruro de acilo reacciona con la oxazolidinona para formar una imida.
+Los sustituyentes en la posición 4 y 5 de la oxazolidinona dirigen cualquier reacción aldólica a la posición alfa del carbonilo del sustrato.
+Farmacéutica
+Las oxazolidinonas son usadas como antibióticos.
+La primera oxazolidinona jamás usada fue la cicloserina (4-amino-1,2-oxazolidin-3-ona), un medicamento de segunda línea contra la tuberculosis desde 1956.
+[2]​ Algunas de las oxazolidinonas más importantes son los antibióticos de última generación usados contra patógenos gram-positivos, incluyendo bacterias resistentes como Staphylococcus aureus resistente a la meticilina.
+Desarrollado durante los noventa con algunas cepas bacterianas haciéndose resistentes a antibióticos tales como la vancomicina.
+Estos antibióticos son considerados como una elección de última alternativa en su clase, está disponible para administración por vía intravenosa y también tiene la ventaja de tener una excelente biodisponibilidad oral.
+El primer antibiótico 1,3-oxazolidinona disponible comercialmente fue el Linezolid.
+En el 2002, AstraZeneca introdujo posizolid (AZD2563).
+Los resultados indican que el posizolid tiene excelente actividad contra todas las bacterias gram-positivas, sin importar su resistencia a otras clases de antibióticos.
+Otro, torezolid está en ensayos clínicos.
+El anticoagulante rivaroxaban, un derivado de oxazolidinona, también está en ensayos.
+Referencias
+Enlaces externos
+Synthesis of Oxazolidinones - Recent Literature

@@ -1,0 +1,22 @@
+4-aminofenol
+4-aminofenol (para-aminofenol o p-aminofenol) es un compuesto orgánico cuya fórmula química es H2NC6H4OH.
+Normalmente disponible como un polvo blanco,[2]​ se utiliza como revelador en películas en blanco y negro, y se comercializa bajo el nombre Rodinal.
+Como un reflejo de su leve carácter hidrófilo, el polvo blanco es moderadamente soluble en alcoholes y puede ser recristalizado en agua caliente.
+Se oxida fácilmente en presencia de una base.
+[3]​ El N-metilo y derivados de N,N-dimetil son de valor comercial.
+Este compuesto es uno de los tres isómeros aminofenoles, los otros dos son 2-aminofenol y 3-aminofenol.
+Síntesis
+A partir de fenol
+Se puede obtener por nitración de fenol, seguida de una reducción con hierro.
+Alternativamente, la hidrogenación parcial de nitrobenceno proporciona fenilhidroxilamina, que reacomoda principalmente a 4-aminofenol:[4]​
+C6H5NO2  +  2 H2   →  C6H5NHOH  +  H2OC6H5NHOH   →  HOC6H4NH2
+A partir de nitrobenceno
+Se puede producir mediante una conversión electrolítica de nitrobenceno para dar fenilhidroxilamina, que se transforma espontáneamente en 4-aminofenol.
+[5]​[6]​
+Usos
+p-aminofenol es un compuesto similar a bloques de construcción.
+De hecho, es el intermedio final en la síntesis industrial de paracetamol.
+[3]​ El tratamiento de p-aminofenol con anhídrido acético da paracetamol:[7]​[8]​[9]​
+El metol es el derivado N-metilo de p-aminofenol.
+En 1891 sustituyó a p-aminofenol como agente de revelado para la fotografía en blanco y negro.
+== Referencias ==

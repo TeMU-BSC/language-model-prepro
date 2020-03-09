@@ -1,0 +1,24 @@
+1,2,3-Triazol
+El 1,2,3-triazol es uno de los 2 compuestos químicos isómeros con fórmula molecular C2H3N3 llamados triazoles, que tienen un anillo de cinco miembros de dos átomos de carbono y tres átomos de nitrógeno.
+El 1,2,3-triazol es un heterociclo aromático.
+[2]​
+Los 1,2,3-triazoles sustituidos pueden ser producidos usando una azida y un alquino por la reacción de Huisgen en la que se produce una reacción de cicloadición 1,3-dipolar.
+El 1,2,3-triazol se usa en la investigación como un componente básico de compuestos químicos más complejos, como los fármacos tazobactam.
+Síntesis
+El 1,2,3-triazol sustituido puede prepararse usando la Cicloadición de Huisgen azida-alquino, que es una cicloadición 1,3-dipolar entre un alquino y una azida.
+Se esquematiza en la siguiente figura:
+La reacción no es regioselectiva: la fracción alquino R2 puede estar unido al átomo de carbono en la posición 4 o 5, como se muestra en la siguiente reacción:
+También hay una variante que hace uso de un catalizador de cobre (I), por ejemplo cloruro de cobre (I) o yoduro de cobre (I), lo que permite que la reacción se pueda llevar a temperatura ambiente.
+Esa reacción es regioselectiva: simplemente da los triazoles 1,4-disustituidos.
+[3]​ Otra variación utiliza un complejo de rutenio como catalizador, tal como Cp*RuCl(PPh3)2, Cp*Ru(COD) y Cp*[RuCl4], éstos dan lugar a la formación exclusiva de triazoles 1,5-disustituidos.
+[4]​[5]​ El mecanismo de reacción de estas variantes es diferente de la de la cicloadición de Huisgen anteriormente comentada.
+[6]​
+Propiedades
+El 1,2,3-triazol tiene dos tautómeros: el 1H y el 2-H:[7]​ 
+Es una estructura sorprendentemente estable en comparación con otros compuestos orgánicos con tres átomos de nitrógeno adyacentes.
+Sin embargo, la pirólisis flash al vacío a 500 °C conduce a la pérdida de nitrógeno molecular (N2) para producir aziridina.
+Ciertos triazoles son relativamente fáciles de escindir debido a la denominada tautomería cadena-anillo.
+Una manifestación se encuentra en la Transposición de Dimroth.
+Bibliografía
+Enlaces externos
+Síntesis de 1,2,3-triazoles (métodos recientes) en inglés

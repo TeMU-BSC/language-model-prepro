@@ -1,0 +1,76 @@
+5-Hidroxitriptófano
+traducido de en:5-hydroxytryptophan
+5-Hidroxitriptófano (5-HTP), también conocido como oxitriptan (INN), es un aminoácido natural y compuesto químico precursor e intermediario de la biosíntesis de los neurotransmisores serotonina y melatonina a partir de triptófano.
+El 5-HTP se vende en Estados Unidos y Canadá como un suplemento dietético, con acciones como antidepresivo, anorético (supresor del apetito) y de ayuda al sueño, y también se comercializa en muchos países europeos como antidepresivo bajo nombres comerciales como Cincofarm, Levothym, Levotonine, Oxyfan, Telesol, Tript-OH y Triptum.
+[2]​[3]​ Varios ensayos clínicos doble ciego han demostrado la eficacia del 5-HTP en el tratamiento de la depresión,[2]​ aunque la calidad de estos estudios ha sido cuestionada.
+[4]​
+Metabolismo
+El 5-Hidroxitriptófano se descarboxila a serotonina (5-hidroxitriptamina o 5-HT) por la enzima L-aminoácido aromático descarboxilasa utilizando la vitamina B6 como cofactor enzimático.
+[5]​
+Esta reacción se produce tanto en el tejido nervioso como en el hígado.
+[6]​ 5-HTP atraviesa la barrera hematoencefálica,[7]​ pero su producto, la 5-HT, no.
+El exceso de 5-HTP, especialmente cuando se administra con vitamina B6, se cree que se metaboliza y se excreta.
+[8]​[9]​
+Farmacología
+La acción psicotrópica de 5-HTP se deriva de su efecto sobre la producción de serotonina en el sistema nervioso central, concretamente, el 5-HTP aumenta la producción de serotonina.
+[10]​ Por lo tanto, se ha utilizado para tratar enfermedades, como la depresión, para las que la falta de serotonina se cree que es un factor primordial.
+[11]​
+Se ha demostrado que la administración conjunta con carbidopa aumenta en gran medida los niveles sanguíneos de 5-HTP.
+[12]​ Sin embargo, varios estudios han demostrado que el 5-HTP es efectivo incluso sin un inhibidor de la decarboxilasa periférica (carbidopa, por ejemplo).
+[13]​
+Otros estudios indican el riesgo de sufrir una esclerodermia como resultado de la combinación de 5-HTP y carbidopa.
+[14]​
+Como suplemento terapéutico
+Aunque el 5-HTP no se encuentra en los alimentos en cantidades significativas, es un intermediario que participan en el metabolismo del triptófano.
+El triptófano se encuentra en abundancia en el pavo, leche, patatas, calabaza y verduras diversas.
+[15]​ A menudo se vende como un complemento dietético, que se obtiene de las semillas de la leguminosa Griffonia simplicifolia.
+Se vende normalmente en cápsulas vegetales o de gelatina de 50 mg o 100 mg.
+Investigación
+Se ha demostrado un efecto beneficioso del 5-HTP en las siguientes patologías: fibromialgia primaria,[16]​ ataxia de Friedreich,[17]​ cefaleas crónicas (primarias o de otro tipo),[18]​ depresión, ansiedad, ingesta compulsiva asociada con la obesidad y el insomnio.
+[19]​
+Una revisión bibliográfica en 2001 encontró que de 108 estudios sobre el 5-HTP publicados entre 1966 y 2000, sólo dos cumplían las normas de calidad mínima exigidas por los autores del estudio para su inclusión en el trabajo.
+Estos dos estudios no se referían a 5-HTP exclusivamente, sino que combinaban los resultados obtenidos del 5-HTP y del triptófano de forma conjunta.
+Estos trabajos demostraron una mejora significativa sobre el grupo tratado con placebo en el tratamiento de la depresión, aunque los autores afirman que las pruebas no fueron concluyentes y que existen alternativas terapéuticas con antidepresivos que han demostrado ser eficaces y seguros.
+Luego, la utilidad clínica del 5-HTP y el triptófano es dudosa.
+[4]​
+Posibles riesgos y efectos secundarios
+Debido a que el 5-HTP no se ha estudiado a fondo en un entorno clínico, los posibles efectos secundarios e interacciones con otros fármacos no se conocen bien.
+La administración de serotonina se ha demostrado que aumenta el riesgo de la enfermedad de las válvulas del corazón en animales de experimentación.
+[20]​[21]​ El 5-HTP no se ha sometido a un protocolo de experimentación similar pero su conversión periférica en serotonina podría provocar los mismos daños cardiacos.
+El 5-HTP oral da lugar a un aumento en orina de 5-HIAA, un metabolito de la serotonina, lo que indica que el 5-HTP se metaboliza periféricamente a serotonina, y que luego se metaboliza a 5-HIAA.
+Esto podría provocar un falso positivo en las pruebas en busca del síndrome carcinoide.
+[22]​
+El 5-HTP puede causar hipertensión mediante el aumento de la actividad de la renina plasmática si no se administra conjuntamente con un inhibidor periférico de la L-aminoácido aromático decarboxilasa, como carbidopa o benserazida.
+[23]​
+Evidencias directas e indirecta de los posibles riesgos (aún no comprobadas) de los efectos secundarios asociados a una sobredosis con el 5-HTP:
+Daños de las válvula cardiacas o fibrosis cardiaca.
+[20]​[21]​
+Cuando se combina con inhibidores de la MAO, o ISRSs, el 5-HTP puede provocar el síndrome serotoninérgico agudo.
+[24]​[25]​
+Cuando se combina con carbidopa (como un tratamiento para los síntomas de la enfermedad de Parkinson), el 5-HTP produce náuseas y vómitos, aunque esto se puede aliviar con la administración de granisetrón.
+[26]​
+Véase también
+Triptófano
+Serotonina
+N-acetilserotonina
+Melatonina
+Griffonia simplicifolia
+Referencias
+Lecturas adicionales
+den Boer JA, Westenberg HG (1990).
+«Behavioral, neuroendocrine, and biochemical effects of 5-hydroxytryptophan administration in panic disorder».
+Psychiatry research 31 (3): 267-78.
+PMID 2139731. doi:10.1016/0165-1781(90)90096-N. 
+Angst J, Woggon B, Schoepf J (1977).
+«The treatment of depression with L-5-hydroxytryptophan versus imipramine.
+Results of two open and one double-blind study».
+Archiv für Psychiatrie und Nervenkrankheiten 224 (2): 175-86.
+PMID 336002. 
+article at Psychology Today
+Turner EH, Loftis JM, Blackwell AD (2006).
+«Serotonin a la carte: supplementation with the serotonin precursor 5-hydroxytryptophan».
+Pharmacol.
+Ther.
+109 (3): 325-38.
+PMID 16023217. doi:10.1016/j.pharmthera.2005.06.004.
+5-Hydroxytryptophan (5-HTP) Supplement Information at University of Maryland Medical Center
